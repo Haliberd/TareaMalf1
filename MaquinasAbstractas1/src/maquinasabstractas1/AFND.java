@@ -308,37 +308,39 @@ class AFND {
     }
     
     public void imprimirDelta(){
-        System.out.printf("Delta: \n");
+        System.out.printf("Delta: [\n");
         for(Transicion t : this.delta){
-            System.out.printf("( %4s , %4s , %4s )\n", t.getNodoSalida(), t.getUnion(), t.getNodoEntrada());
+            System.out.printf("(%s, %s, %s),\n", t.getNodoSalida(), t.getUnion(), t.getNodoEntrada());
         }
+        Transicion d = this.delta.get(this.delta.size()-1);
+        System.out.printf("(%s, %s, %s)]\n", d.getNodoSalida(), d.getUnion(), d.getNodoEntrada());
     }
     
     public void imprimirK(){
-        System.out.printf("K: [ ");
+        System.out.printf("K: [");
         for(String s : this.k)
-            System.out.printf(" %4s ", s);
-        System.out.printf(" ]\n");
+            System.out.printf("%s, ", s);
+        System.out.printf("%s]\n", this.k.get(this.k.size()-1));
     }
     
     public void imprimirSigma(){
-        System.out.printf("Sigma: [ ");
+            System.out.printf("Sigma: [");
         for(String s : this.sigma)
-            System.out.printf(" %4s ", s);
-        System.out.printf(" ]\n");
+            System.out.printf("%s, ", s);
+        System.out.printf("%s]\n", this.sigma.get(this.sigma.size()-1));
     }
     
     public void imprimirEstadoInicial(){
-        System.out.printf("s: %4s\n", this.listarEstadosSinEntrada().get(0));
+        System.out.printf("s: %s\n", this.listarEstadosSinEntrada().get(0));
     }
     
     public void imprimirFinal(){
         ArrayList<String> listadoK = this.listarEstadosSinSalida();
-        System.out.printf("F: [ ");
-        for(String t : listadoK){
-            System.out.printf(" %4s ", t);
+        System.out.printf("F: [");
+        for(String t : listadoK.subList(0, listadoK.size()-1)){
+            System.out.printf("%s, ", t);
         }
-        System.out.printf(" ]\n");
+        System.out.printf("%s]\n", listadoK.get(listadoK.size()-1));
     }
 
     public ArrayList<String> getK() {
