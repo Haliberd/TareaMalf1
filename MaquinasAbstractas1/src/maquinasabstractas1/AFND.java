@@ -309,7 +309,7 @@ class AFND {
     
     public void imprimirDelta(){
         System.out.printf("Delta: [\n");
-        for(Transicion t : this.delta){
+        for(Transicion t : this.delta.subList(0, this.delta.size()-1)){
             System.out.printf("(%s, %s, %s),\n", t.getNodoSalida(), t.getUnion(), t.getNodoEntrada());
         }
         Transicion d = this.delta.get(this.delta.size()-1);
@@ -318,14 +318,14 @@ class AFND {
     
     public void imprimirK(){
         System.out.printf("K: [");
-        for(String s : this.k)
+        for(String s : this.k.subList(0, this.k.size()-1))
             System.out.printf("%s, ", s);
         System.out.printf("%s]\n", this.k.get(this.k.size()-1));
     }
     
     public void imprimirSigma(){
             System.out.printf("Sigma: [");
-        for(String s : this.sigma)
+        for(String s : this.sigma.subList(0, this.sigma.size()-1))
             System.out.printf("%s, ", s);
         System.out.printf("%s]\n", this.sigma.get(this.sigma.size()-1));
     }
