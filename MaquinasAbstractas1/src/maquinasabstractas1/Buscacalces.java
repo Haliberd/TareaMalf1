@@ -18,7 +18,6 @@ public class Buscacalces {
     private int nFinal = -1;
     private boolean autoActivo = false;
     private boolean nEFinal = false;
-    private String estadoInicial;
     private String casiSumidero;
     private String letra;
     private String eActual;
@@ -30,9 +29,8 @@ public class Buscacalces {
     public Buscacalces(AFD afd, String cadena){
         
         this.afd = afd;
-        this.cadena = cadena + "&&";
+        this.cadena = cadena + ","; // Caracter final de la cadena
         this.transiciones = new ArrayList<>();
-        this.estadoInicial = afd.getkInicioAFD();
         this.eActual = afd.getkInicioAFD();
         this.listaDeEstadosFinales = new ArrayList<>();
         this.eSiguiente = "";
@@ -48,8 +46,9 @@ public class Buscacalces {
             for(String s : tAFD){
                 if(s.equals("sumidero"))
                     this.casiSumidero = "n" + cMagic;
-                cMagic++;
+               
             }
+             cMagic++;
         }
         //Agrega transiciones que no llevan a un sumidero por ninguna de sus transiciones
         for(Transicion t : this.afd.getDeltaAFD()){
@@ -79,8 +78,8 @@ public class Buscacalces {
             }
             
             if(this.contador == 0)
-                this.eSiguiente = "";
-            if(this.eSiguiente.equals("")){
+                this.eSiguiente = null;
+            if(this.eSiguiente == null){
                 if(this.autoActivo){
                     e--;
                 }
