@@ -32,25 +32,29 @@ public class MaquinasAbstractas1 {
         ExpresionRegular expReg = new ExpresionRegular(er);
         
         //Imprimir la expresion regular
+        System.out.printf("ER: ");
         expReg.imprimirExpresionRegular();
+        System.out.printf("\n\n");
         
-        //Creacion del AFND
+        //Creacion de AFND
         AFND afnd = new AFND(expReg.getExpresionFormateada());
         afnd.crearAFND();
-        afnd.imprimirDelta();
         afnd.imprimirK();
         afnd.imprimirSigma();
         afnd.imprimirEstadoInicial();
         afnd.imprimirFinal();
-        
+        afnd.imprimirDelta();      
+        System.out.printf("\n\n");
+        //Creacion de AFD
         AFD afd = new AFD(afnd);
         afd.transformarAFNDaAFD();
+        System.out.println("AFD");
         afd.imprimirK();
         afd.imprimirSigma();
         afd.imprimirS();
         afd.imprimirFinal();
         afd.imprimirDelta();
-        
+        System.out.printf("\n\n");
         
         
         

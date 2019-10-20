@@ -201,33 +201,37 @@ public class AFD {
     }
     
     public void imprimirDelta(){
-        for(Transicion t : this.deltaAFD)
+        System.out.printf("Delta: [");
+        for(Transicion t : this.deltaAFD.subList(0, this.deltaAFD.size()-1))
             System.out.println("(" + t.getNodoSalida() + "," + t.getUnion()
-            + "," + t.getNodoEntrada() + ")");
+            + "," + t.getNodoEntrada() + "), ");
+        Transicion d = this.deltaAFD.get(this.deltaAFD.size()-1);
+        System.out.println("(" + d.getNodoSalida() + "," + d.getUnion()
+            + "," + d.getNodoEntrada() + ")]");
     }
     
     public void imprimirSigma(){
-        System.out.printf("sigma: ");
-        for(String s : this.sigmaAFD){
-            System.out.printf(" " + s + " ");
+        System.out.printf("Sigma: [");
+        for(String s : this.sigmaAFD.subList(0, this.sigmaAFD.size()-1)){
+            System.out.printf("" + s + ", ");
         }
-        System.out.println("");
+        System.out.println(this.sigmaAFD.get(this.sigmaAFD.size()-1) +"]");
     }
     
     public void imprimirFinal(){
-        System.out.printf("F: ");
-        for(String s : this.FAFD){
-            System.out.printf(" " + s + " ");
+        System.out.printf("F: [");
+        for(String s : this.FAFD.subList(0, this.FAFD.size()-1)){
+            System.out.printf("" + s + ", ");
         }
-        System.out.println("");
+        System.out.println(this.FAFD.get(this.FAFD.size()-1) +"]");
     }
     
     public void imprimirK(){
-        System.out.printf("K: ");
-        for(String s : this.KAFD){
-            System.out.printf(" " + s + " ");
+        System.out.printf("K: [");
+        for(String s : this.KAFD.subList(0, this.KAFD.size()-1)){
+            System.out.printf("" + s + ", ");
         }
-        System.out.println("");
+        System.out.println(this.KAFD.get(this.KAFD.size()-1) +"]");
     }
     
     public void imprimirS(){
