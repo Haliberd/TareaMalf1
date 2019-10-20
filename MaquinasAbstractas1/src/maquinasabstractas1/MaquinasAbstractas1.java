@@ -56,7 +56,8 @@ public class MaquinasAbstractas1 {
         afd.imprimirDelta();
         System.out.printf("\n\n");
         
-        
+        System.out.println("Ocurrencias: ");
+        Buscacalces bc = new Buscacalces(afd, cadena);
         
     }
     
