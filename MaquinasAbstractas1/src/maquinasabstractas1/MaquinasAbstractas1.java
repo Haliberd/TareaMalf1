@@ -44,6 +44,12 @@ public class MaquinasAbstractas1 {
         afnd.imprimirFinal();
         
         AFD afd = new AFD(afnd);
+        afd.transformarAFNDaAFD();
+        afd.imprimirK();
+        afd.imprimirSigma();
+        afd.imprimirS();
+        afd.imprimirFinal();
+        afd.imprimirDelta();
         
         
         
