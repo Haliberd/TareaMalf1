@@ -107,7 +107,7 @@ public class AFD {
         ArrayList<ArrayList<String>> listaDeEstadosAgregados = this.tabla.get("estados");
         for(ArrayList<String> lista : listaDeEstadosAgregados){
             int contador = 0;
-            for (String estado : lista){
+            for (String estado : lista.subList(0, lista.size()-1)){
                 if(estados.contains(estado)){
                     contador++;
                 }
@@ -133,7 +133,8 @@ public class AFD {
         tabla.get("estados").add(new ArrayList<String>());
         tabla.get("estados").get(0).add(this.primerEstadoInicial);
         
-        for(String estado : tabla.get("estados").get(0)){
+        for(int d = 0; d<this.tabla.get("estados").get(0).size(); d++ ){
+            String estado = tabla.get("estados").get(0).get(d);
             ArrayList<String> adyacencias = this.obtenerNodosAdyacentes(estado, "_");
             for(String adyacente : adyacencias){
                 if(!estado.contains(adyacente))
