@@ -62,61 +62,6 @@ public class AFD {
         this.primerEstadoFinal = this.obtenerEstadoFinal();
         
     }
-
-    private String obtenerEstadoInicial() {
-        String nuevoEstadoInicial = "";
-        for(int e = 0; this.KAFND.size() > e; e++){
-            int coincidencias = 0;
-            for (int i = 0; this.deltaAFND.size() > i && coincidencias == 0; i++){
-                if(this.KAFND.get(e).equals(this.deltaAFND.get(i).getNodoEntrada()))
-                    coincidencias++;
-            }
-            if( coincidencias == 0 )
-                nuevoEstadoInicial = this.KAFND.get(e);
-        }
-        return nuevoEstadoInicial;
-    }
-
-    private String obtenerEstadoFinal() {
-        String nuevoEstadoFinal = "";
-        for(int e = 0; this.KAFND.size() > e; e++){
-            int coincidencias = 0;
-            for (int i = 0; this.deltaAFND.size() > i && coincidencias == 0; i++){
-                if(this.KAFND.get(e).equals(this.deltaAFND.get(i).getNodoSalida()))
-                    coincidencias++;
-            }
-            if( coincidencias == 0 )
-                nuevoEstadoFinal = this.KAFND.get(e);
-        }
-        return nuevoEstadoFinal;
-    }
-    
-    private ArrayList<String> obtenerNodosAdyacentes(String estado, String caracter){
-        ArrayList<String> listaDeAdyacencia = new ArrayList<>();
-        
-        for(Transicion t : this.deltaAFND){
-            if(t.getNodoSalida().equals(estado) && t.getUnion().equals(caracter))
-                listaDeAdyacencia.add(t.getNodoEntrada());
-        }
-        
-        return listaDeAdyacencia;
-    }
-
-    private String obtenerEstadoSiEsQueEsteHaSidoAgregadoAnteriormente(ArrayList<String> estados){
-        
-        ArrayList<ArrayList<String>> listaDeEstadosAgregados = this.tabla.get("estados");
-        for(ArrayList<String> lista : listaDeEstadosAgregados){
-            int contador = 0;
-            for (String estado : lista.subList(0, lista.size()-1)){
-                if(estados.contains(estado)){
-                    contador++;
-                }
-            }
-            if (contador == estados.size())
-                return lista.get(lista.size()-1);
-        }
-        return null;
-    }
     
     /*
     * Sea N el caracter apunta hacia un nodo, el cual esta compuesto de la siguiente forma
@@ -198,6 +143,61 @@ public class AFD {
             }
         }
         
+    }
+    
+    private String obtenerEstadoInicial() {
+        String nuevoEstadoInicial = "";
+        for(int e = 0; this.KAFND.size() > e; e++){
+            int coincidencias = 0;
+            for (int i = 0; this.deltaAFND.size() > i && coincidencias == 0; i++){
+                if(this.KAFND.get(e).equals(this.deltaAFND.get(i).getNodoEntrada()))
+                    coincidencias++;
+            }
+            if( coincidencias == 0 )
+                nuevoEstadoInicial = this.KAFND.get(e);
+        }
+        return nuevoEstadoInicial;
+    }
+
+    private String obtenerEstadoFinal() {
+        String nuevoEstadoFinal = "";
+        for(int e = 0; this.KAFND.size() > e; e++){
+            int coincidencias = 0;
+            for (int i = 0; this.deltaAFND.size() > i && coincidencias == 0; i++){
+                if(this.KAFND.get(e).equals(this.deltaAFND.get(i).getNodoSalida()))
+                    coincidencias++;
+            }
+            if( coincidencias == 0 )
+                nuevoEstadoFinal = this.KAFND.get(e);
+        }
+        return nuevoEstadoFinal;
+    }
+    
+    private ArrayList<String> obtenerNodosAdyacentes(String estado, String caracter){
+        ArrayList<String> listaDeAdyacencia = new ArrayList<>();
+        
+        for(Transicion t : this.deltaAFND){
+            if(t.getNodoSalida().equals(estado) && t.getUnion().equals(caracter))
+                listaDeAdyacencia.add(t.getNodoEntrada());
+        }
+        
+        return listaDeAdyacencia;
+    }
+
+    private String obtenerEstadoSiEsQueEsteHaSidoAgregadoAnteriormente(ArrayList<String> estados){
+        
+        ArrayList<ArrayList<String>> listaDeEstadosAgregados = this.tabla.get("estados");
+        for(ArrayList<String> lista : listaDeEstadosAgregados){
+            int contador = 0;
+            for (String estado : lista.subList(0, lista.size()-1)){
+                if(estados.contains(estado)){
+                    contador++;
+                }
+            }
+            if (contador == estados.size())
+                return lista.get(lista.size()-1);
+        }
+        return null;
     }
     
     public void imprimirDelta(){
